@@ -5,11 +5,11 @@ import { deleteReservation } from '../_lib/actions';
 import { useTransition } from 'react';
 import Spinner from '@/app/_components/Spinner';
 
-function DeleteReservation({ bookingId }) {
+function DeleteReservation({ bookingId, handleDelete }) {
   const [isPending, startTransition] = useTransition();
 
   function handleReservation () {
-    startTransition(() => deleteReservation(bookingId))
+    if (confirm('Are you sure you want to delete this reservation')) startTransition(() => handleDelete(bookingId))
   }
 
   return (
